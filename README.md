@@ -74,6 +74,6 @@ I'm a data analyst passionate about financial analytics and customer behavior an
 
 ## 🔗 Connect With Me
 
-- LinkedIn: 
+- LinkedIn: https://www.linkedin.com/in/devijetta/
 - Portfolio: 
 
