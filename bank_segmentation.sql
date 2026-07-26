@@ -1,5 +1,6 @@
 ---DATA QUERYING FOR FINANCIAL INSIGHTS
 CREATE DATABASE bank_sys;
+USE bank_sys;
 -- 1. Total Spend Per Customer
 SELECT 
     c.customer_id,

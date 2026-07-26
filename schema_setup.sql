@@ -1,26 +1,31 @@
+
+CREATE DATABASE bank_sys;
+USE bank_sys;
 CREATE TABLE customers (
-	customer_id SERIAL PRIMARY KEY,
-	name TEXT NOT NULL,
-	gender VARCHAR(1) CHECK (gender IN ('M', 'F')),
-	dob DATE,
-	signup_date DATE NOT NULL,
-	city TEXT
+    customer_id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    gender CHAR(1) CHECK (gender IN ('M','F')),
+    dob DATE,
+    signup_date DATE NOT NULL,
+    city VARCHAR(100)
 );
 
 CREATE TABLE accounts (
-    account_id SERIAL PRIMARY KEY,
-    customer_id INT REFERENCES customers(customer_id),
-    account_type VARCHAR(20) CHECK (account_type IN ('savings', 'current', 'loan')),
+    account_id INT IDENTITY(1,1) PRIMARY KEY,
+    customer_id INT,
+    account_type VARCHAR(10) CHECK (account_type IN ('savings','current','loan')),
     open_date DATE NOT NULL,
-    balance NUMERIC(12,2) DEFAULT 0
+    balance DECIMAL(12,2) DEFAULT 0,
+    account_number VARCHAR(50),
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
 );
-ALTER TABLE accounts ADD COLUMN account_number TEXT;
 
 CREATE TABLE transactions (
-    transaction_id SERIAL PRIMARY KEY,
-    account_id INT REFERENCES accounts(account_id),
+    transaction_id INT IDENTITY(1,1) PRIMARY KEY,
+    account_id INT,
     transaction_date DATE NOT NULL,
-    amount NUMERIC(12,2) NOT NULL,
-    transaction_type VARCHAR(20),     
-    description VARCHAR(50) 
+    amount DECIMAL(12,2) NOT NULL,
+    transaction_type VARCHAR(20),
+    description VARCHAR(50),
+    FOREIGN KEY (account_id) REFERENCES accounts(account_id)
 );
